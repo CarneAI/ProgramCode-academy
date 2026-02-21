@@ -4,9 +4,12 @@
 :root {
     --primary-color: #2c3e50;
     --accent-color: #3498db;
+    --accent-red: #e74c3c;
     --text-color: #333;
     --bg-light: #f4f7f6;
+    --bg-card: #f9f9f9;
     --white: #ffffff;
+    --border-color: #ddd;
     --border-radius: 8px;
     --transition: all 0.3s ease;
 }
@@ -78,6 +81,12 @@ main {
 
 section {
     margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+}
+
+section:last-of-type {
+    border-bottom: none;
 }
 
 h2 {
@@ -101,12 +110,17 @@ p {
 /* ESTILO DE CURSOS (CARDS)
 */
 article {
-    background: #f9f9f9;
+    background: var(--bg-card);
     padding: 1.5rem;
     border-radius: var(--border-radius);
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
     margin-bottom: 2rem;
     transition: var(--transition);
+}
+
+article figure img {
+    width: 300px;
+    border-radius: var(--border-radius);
 }
 
 article:hover {
@@ -114,16 +128,6 @@ article:hover {
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
-/* Contenedor de imágenes */
-figure div {
-    background-color: #e0e0e0;
-    border: 2px dashed #bbb !important; /* Sobrescribimos el estilo inline */
-    color: #777;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 1rem 0;
-    border-radius: var(--border-radius);
-}
 
 figcaption {
     font-size: 0.9rem;
@@ -160,7 +164,7 @@ table {
 th, td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
 }
 
 th {
@@ -227,7 +231,7 @@ footer small {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #e74c3c; /* Un rojo llamativo */
+    background-color: var(--accent-red);
     color: white;
     padding: 15px 10px;
     border-radius: 50px;
