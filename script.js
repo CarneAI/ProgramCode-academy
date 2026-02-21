@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Aseguramos que la página inicie en la parte superior
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const indicador = document.getElementById('indicador-gratis');
     const targetSection = document.getElementById('cursos');
 
