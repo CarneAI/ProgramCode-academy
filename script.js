@@ -1,27 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
     const indicador = document.getElementById('indicador-gratis');
-    const seccionPython = document.querySelector('a[href*=".python/"]');
+    const targetSection = document.getElementById('cursos');
 
-    if (!indicador || !seccionPython) return;
+    if (!indicador || !targetSection) return;
 
+    // Configuración inicial: oculto para el efecto de entrada
+    indicador.style.opacity = '0';
+
+    // El indicador aparece después de un breve retraso
+    setTimeout(() => {
+        indicador.style.opacity = '1';
+    }, 1000);
+
+    // Funcionalidad: scroll suave al hacer clic en la cápsula
+    indicador.addEventListener('click', () => {
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+
+    // Lógica para ocultar el indicador cuando se llega a la sección de cursos
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Aplicamos un efecto de desvanecimiento
+                // Desvanecimiento suave
                 indicador.style.opacity = '0';
+                indicador.style.pointerEvents = 'none';
 
-                // Lo eliminamos completamente después de la transición
+                // Eliminación definitiva tras la transición
                 setTimeout(() => {
-                    indicador.remove();
-                }, 500);
+                    if (indicador.parentNode) {
+                        indicador.remove();
+                    }
+                }, 600);
 
-                // Dejamos de observar una vez que se ha activado
+                // Dejar de observar una vez activado
                 observer.disconnect();
             }
         });
     }, {
-        threshold: 0.1 // Se activa cuando al menos el 10% del elemento es visible
+        threshold: 0.1 // Se activa cuando el 10% de la sección es visible
     });
 
-    observer.observe(seccionPython);
+    observer.observe(targetSection);
 });
