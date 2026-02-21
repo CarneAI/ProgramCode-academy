@@ -5,6 +5,7 @@
     --primary-color: #2c3e50;
     --accent-color: #3498db;
     --accent-red: #e74c3c;
+    --accent-orange: #f39c12;
     --text-color: #333;
     --bg-light: #f4f7f6;
     --bg-card: #f9f9f9;
@@ -227,25 +228,34 @@ footer small {
 
 
 .floating-arrow {
+    --scale: 1;
     position: fixed;
     left: 20px;
     top: 50%;
-    transform: translateY(-50%);
-    background-color: var(--accent-red);
+    transform: translateY(-50%) scale(var(--scale));
+    background-color: var(--accent-orange);
     color: white;
-    padding: 15px 10px;
+    padding: 15px 12px;
     border-radius: 50px;
     font-weight: bold;
-    writing-mode: vertical-rl; /* Texto en vertical */
-    text-orientation: mixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    animation: bounce 2s infinite;
-    transition: opacity 0.5s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    animation: pointing-down 1.5s infinite ease-in-out;
+    transition: opacity 0.5s ease, transform 0.3s ease, background-color 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    user-select: none;
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(-50%);}
-    40% {transform: translateY(-60%);}
-    60% {transform: translateY(-45%);}
+.floating-arrow:hover {
+    --scale: 1.1;
+    filter: brightness(1.1);
+}
+
+@keyframes pointing-down {
+    0%, 100% { transform: translateY(-50%) scale(var(--scale)); }
+    50% { transform: translateY(-40%) scale(var(--scale)); }
 }
